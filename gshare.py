@@ -10,10 +10,10 @@ branches = [
 
 for pc, act in branches:
     idx = pc ^ ghr
-    counter = table[index]
+    counter = table[idx]
 
     if counter >= 2:
-        predic = 1
+        predict = 1
     else:
         predict = 0
 
