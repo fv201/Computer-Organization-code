@@ -1,8 +1,6 @@
+table = [2, 2, 2, 2]
+ghr = 0
 
-table = [2, 2, 2, 2]   # prediction table (2 = weakly taken)
-ghr = 0                # last branch result
-
-# (pc, actual result)
 branches = [
     (1, 1),
     (1, 0),
@@ -10,35 +8,26 @@ branches = [
     (1, 1)
 ]
 
-for b in branches:
-    pc = b[0]
-    actual = b[1]
-
-    # get index using xor
+for pc, act in branches:
     idx = pc ^ ghr
+    counter = table[index]
 
-    counter = table[idx]
-
-    # make prediction
     if counter >= 2:
-        pred = 1
+        predic = 1
     else:
-        pred = 0
+        predict = 0
 
-    print("index:", idx)
-    print("pred:", pred, "actual:", actual)
+    print("PC:", pc)
+    print("Index:", idx)
+    print("Prediction:", predic)
+    print("Actual:", act)
 
-    # update counter
-    if actual == 1:
-        if counter < 3:
-            table[idx] += 1
-    else:
-        if counter > 0:
-            table[idx] -= 1
+    if act == 1 and table[idx] < 3:
+        table[idx] += 1
+    elif act == 0 and table[idx] > 0:
+        table[idx] -= 1
 
-    # update history
-    ghr = actual
+    ghr = act
 
-    print("table now:", table)
-    print("ghr:", ghr)
-    print()
+    print("Updated table:", table)
+    print("Updated GHR:", ghr)
