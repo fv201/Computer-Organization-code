@@ -19,7 +19,7 @@ for pc, act in branches:
 
     print("PC:", pc)
     print("Index:", idx)
-    print("Prediction:", predic)
+    print("Prediction:", predict)
     print("Actual:", act)
 
     if act == 1 and table[idx] < 3:
